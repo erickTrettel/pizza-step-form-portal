@@ -7,7 +7,7 @@ function Ketchup({ next, previous }) {
   return (
     <div>
       <header>
-        <h2>Ketchup na pizza?</h2>
+        <h4>Ketchup na pizza?</h4>
       </header>
 
       <p>Nem pense nisso</p>
