@@ -6,11 +6,11 @@ function Stepper({ steps, currentStep }) {
     <ReactStepper
       steps={steps}
       activeStep={currentStep}
-      activeColor='var(--dark-blue)'
-      completeColor='var(--dark-blue)'
-      activeTitleColor='var(--dark-blue)'
-      completeTitleColor='var(--dark-blue)'
-      completeBarColor='var(--dark-blue)'
+      activeColor='var(--red)'
+      completeColor='var(--red)'
+      activeTitleColor='var(--red)'
+      completeTitleColor='var(--red)'
+      completeBarColor='var(--red)'
       barStyle='solid'
     />
   );

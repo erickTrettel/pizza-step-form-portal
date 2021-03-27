@@ -1,9 +1,11 @@
+import logo from '../../assets/logo.png';
+
 import './styles.css';
 
 export default function Header() {
   return (
     <header className='app-header'>
-      <h1>App monte sua pizza!</h1>
+      <img src={logo} className='logo-header' alt='logo monte sua pizza' />
     </header>
   );
 }
