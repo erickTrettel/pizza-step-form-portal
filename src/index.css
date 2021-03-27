@@ -57,3 +57,13 @@ button.btn-primary:focus {
   background-color: var(--red-hover) !important;
   border-color: var(--red-hover) !important;
 }
+
+img.step-image {
+  max-width: 400px;
+  border-radius: 4px;
+}
+
+footer.step-footer {
+  display: flex;
+  justify-content: space-between;
+}

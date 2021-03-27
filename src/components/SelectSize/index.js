@@ -8,6 +8,8 @@ import { toast } from 'react-toastify';
 import { fetchSizes, clear } from '../../store/size';
 import { setSize } from '../../store/pizza';
 
+import pizzaImg from '../../assets/pizza-slices.jpg';
+
 function SelectSize({ next, previous }) {
   const dispatch = useDispatch();
 
@@ -41,23 +43,29 @@ function SelectSize({ next, previous }) {
     return <p>Tivemos um problema ao carregar os tamanhos disponíveis</p>;
 
   return (
-    <article>
-      <p>Qual o tamanho da sua fome?</p>
+    <div>
+      <div className='d-flex justify-content-between'>
+        <div>
+          <p>Qual o tamanho da sua fome?</p>
 
-      {sizes.map((item) => (
-        <Form.Check
-          key={item.description}
-          type='radio'
-          label={`${item.description} (${item.slices} fatias)`}
-          name='size'
-          id={item.description}
-          onChange={(e) => e.target.checked && handleSelectSize(item)}
-        />
-      ))}
+          {sizes.map((item) => (
+            <Form.Check
+              key={item.description}
+              type='radio'
+              label={`${item.description} (${item.slices} fatias)`}
+              name='size'
+              id={item.description}
+              onChange={(e) => e.target.checked && handleSelectSize(item)}
+            />
+          ))}
+        </div>
+
+        <img className='step-image' src={pizzaImg} alt='Tamanhos' />
+      </div>
 
       <hr className='mt-5' />
 
-      <footer className='ketchup-footer'>
+      <footer className='step-footer'>
         <Button variant='secondary' onClick={previous} size='sm'>
           Voltar
         </Button>
@@ -66,7 +74,7 @@ function SelectSize({ next, previous }) {
           Próximo
         </Button>
       </footer>
-    </article>
+    </div>
   );
 }
 

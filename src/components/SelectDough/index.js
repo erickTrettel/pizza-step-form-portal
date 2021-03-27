@@ -8,6 +8,8 @@ import { toast } from 'react-toastify';
 import { fetchDough, clear } from '../../store/dough';
 import { setDough } from '../../store/pizza';
 
+import pizzaImg from '../../assets/pizza-plate.jpg';
+
 function SelectDough({ next, previous }) {
   const dispatch = useDispatch();
 
@@ -40,23 +42,29 @@ function SelectDough({ next, previous }) {
   if (error) return <p>Tivemos um problema ao carregar nossas massas</p>;
 
   return (
-    <article>
-      <p>Escolha sua massa favorita</p>
+    <div>
+      <div className='d-flex justify-content-between'>
+        <div>
+          <p>Escolha sua massa favorita</p>
 
-      {dough.map((item) => (
-        <Form.Check
-          key={item}
-          type='radio'
-          label={item.description}
-          name='dough'
-          id={item.description}
-          onChange={(e) => e.target.checked && handleSelectDough(item)}
-        />
-      ))}
+          {dough.map((item) => (
+            <Form.Check
+              key={item}
+              type='radio'
+              label={item.description}
+              name='dough'
+              id={item.description}
+              onChange={(e) => e.target.checked && handleSelectDough(item)}
+            />
+          ))}
+        </div>
+
+        <img className='step-image' src={pizzaImg} alt='Massa' />
+      </div>
 
       <hr className='mt-5' />
 
-      <footer className='ketchup-footer'>
+      <footer className='step-footer'>
         <Button variant='secondary' onClick={previous} size='sm'>
           Voltar
         </Button>
@@ -65,7 +73,7 @@ function SelectDough({ next, previous }) {
           Próximo
         </Button>
       </footer>
-    </article>
+    </div>
   );
 }
 

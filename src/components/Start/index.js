@@ -12,6 +12,8 @@ import {
 
 import Summary from '../Summary';
 
+import pizzaImg from '../../assets/pizza-beauty.jpg';
+
 function Start({ next }) {
   const dispatch = useDispatch();
 
@@ -37,14 +39,20 @@ function Start({ next }) {
   if (error) return <p>Tivemos um problema ao carregar a pizza do dia</p>;
 
   return (
-    <article>
-      <p>Que tal experimentar a pizza do dia?</p>
+    <div>
+      <div className='d-flex justify-content-between'>
+        <div>
+          <p>Que tal experimentar a pizza do dia?</p>
 
-      <Summary pizza={daySuggestion} />
+          <Summary pizza={daySuggestion} />
+        </div>
+
+        <img className='step-image' src={pizzaImg} alt='Pizza do dia' />
+      </div>
 
       <hr className='mt-5' />
 
-      <footer className='ketchup-footer'>
+      <footer className='step-footer'>
         <Button onClick={handleSelectDaySuggestion} size='sm'>
           Eu quero!
         </Button>
@@ -53,7 +61,7 @@ function Start({ next }) {
           Quero montar minha pizza
         </Button>
       </footer>
-    </article>
+    </div>
   );
 }
 

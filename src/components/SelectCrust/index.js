@@ -8,6 +8,8 @@ import { toast } from 'react-toastify';
 import { fetchCrusts, clear } from '../../store/crust';
 import { setCrust } from '../../store/pizza';
 
+import pizzaImg from '../../assets/pizza-crust.jpg';
+
 function SelectCrust({ next, previous }) {
   const dispatch = useDispatch();
 
@@ -40,23 +42,29 @@ function SelectCrust({ next, previous }) {
   if (error) return <p>Tivemos um problema ao carregar nossas bordas</p>;
 
   return (
-    <article>
-      <p>Que tipo de borda você curte?</p>
+    <div>
+      <div className='d-flex justify-content-between'>
+        <div>
+          <p>Que tipo de borda você curte?</p>
 
-      {crusts.map((item) => (
-        <Form.Check
-          key={item.description}
-          type='radio'
-          label={item.description}
-          name='crust'
-          id={item.description}
-          onChange={(e) => e.target.checked && handleSelectCrust(item)}
-        />
-      ))}
+          {crusts.map((item) => (
+            <Form.Check
+              key={item.description}
+              type='radio'
+              label={item.description}
+              name='crust'
+              id={item.description}
+              onChange={(e) => e.target.checked && handleSelectCrust(item)}
+            />
+          ))}
+        </div>
+
+        <img className='step-image' src={pizzaImg} alt='Bordas' />
+      </div>
 
       <hr className='mt-5' />
 
-      <footer className='ketchup-footer'>
+      <footer className='step-footer'>
         <Button variant='secondary' onClick={previous} size='sm'>
           Voltar
         </Button>
@@ -65,7 +73,7 @@ function SelectCrust({ next, previous }) {
           Próximo
         </Button>
       </footer>
-    </article>
+    </div>
   );
 }
 

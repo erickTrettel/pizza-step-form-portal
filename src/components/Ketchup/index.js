@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import { Button, Form } from 'react-bootstrap';
 
+import pizzaImg from '../../assets/pizza-ketchup.jpg';
+
 import './styles.css';
 
 function Ketchup({ next, previous }) {
@@ -10,27 +12,33 @@ function Ketchup({ next, previous }) {
         <h4>Ketchup na pizza?</h4>
       </header>
 
-      <p>Nem pense nisso</p>
+      <div className='d-flex justify-content-between'>
+        <div>
+          <p>Nem pense nisso</p>
 
-      <Form.Check type='radio' id='ketchup-true'>
-        <Form.Check.Input type='radio' disabled />
+          <Form.Check type='radio' id='ketchup-true'>
+            <Form.Check.Input type='radio' disabled />
 
-        <Form.Check.Label>
-          <span className='line-through'>Sim</span>
-        </Form.Check.Label>
-      </Form.Check>
+            <Form.Check.Label>
+              <span className='line-through'>Sim</span>
+            </Form.Check.Label>
+          </Form.Check>
 
-      <Form.Check
-        type='radio'
-        label='Ew, não!'
-        name='ketchup'
-        id='ketchup-false'
-        checked
-      />
+          <Form.Check
+            type='radio'
+            label='Ew, não!'
+            name='ketchup'
+            id='ketchup-false'
+            checked
+          />
+        </div>
+
+        <img className='step-image' src={pizzaImg} alt='Ketchup' />
+      </div>
 
       <hr className='mt-5' />
 
-      <footer className='ketchup-footer'>
+      <footer className='step-footer'>
         <Button variant='secondary' onClick={previous} size='sm'>
           Voltar
         </Button>
