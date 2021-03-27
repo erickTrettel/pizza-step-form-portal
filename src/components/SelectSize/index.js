@@ -4,6 +4,7 @@ import { Button, Form } from 'react-bootstrap';
 
 import { useSelector, useDispatch } from 'react-redux';
 
+import { toast } from 'react-toastify';
 import { fetchSizes, clear } from '../../store/size';
 import { setSize } from '../../store/pizza';
 
@@ -14,6 +15,8 @@ function SelectSize({ next, previous }) {
   const sizes = useSelector((state) => state.size.data);
   const error = useSelector((state) => state.size.error);
 
+  const selectedSize = useSelector((state) => state.pizza.size);
+
   useEffect(() => {
     dispatch(fetchSizes());
 
@@ -23,6 +26,14 @@ function SelectSize({ next, previous }) {
   const handleSelectSize = useCallback((item) => dispatch(setSize(item)), [
     dispatch,
   ]);
+
+  const handleGoToNextStep = useCallback(() => {
+    if (!selectedSize) {
+      toast.warning('Você deve selecionar o tamanho da pizza primeiro');
+    } else {
+      next();
+    }
+  }, [selectedSize, next]);
 
   if (isLoading) return <p>Carregando...</p>;
 
@@ -51,7 +62,7 @@ function SelectSize({ next, previous }) {
           Voltar
         </Button>
 
-        <Button onClick={next} size='sm'>
+        <Button onClick={handleGoToNextStep} size='sm'>
           Próximo
         </Button>
       </footer>

@@ -4,6 +4,7 @@ import { Button, Form } from 'react-bootstrap';
 
 import { useSelector, useDispatch } from 'react-redux';
 
+import { toast } from 'react-toastify';
 import { fetchDough, clear } from '../../store/dough';
 import { setDough } from '../../store/pizza';
 
@@ -14,9 +15,19 @@ function SelectDough({ next, previous }) {
   const dough = useSelector((state) => state.dough.data);
   const error = useSelector((state) => state.dough.error);
 
+  const selectedDough = useSelector((state) => state.pizza.dough);
+
   const handleSelectDough = useCallback((item) => dispatch(setDough(item)), [
     dispatch,
   ]);
+
+  const handleGoToNextStep = useCallback(() => {
+    if (!selectedDough) {
+      toast.warning('Você deve selecionar a massa primeiro');
+    } else {
+      next();
+    }
+  }, [selectedDough, next]);
 
   useEffect(() => {
     dispatch(fetchDough());
@@ -50,7 +61,7 @@ function SelectDough({ next, previous }) {
           Voltar
         </Button>
 
-        <Button onClick={next} size='sm'>
+        <Button onClick={handleGoToNextStep} size='sm'>
           Próximo
         </Button>
       </footer>

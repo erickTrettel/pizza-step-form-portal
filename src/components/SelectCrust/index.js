@@ -4,6 +4,7 @@ import { Button, Form } from 'react-bootstrap';
 
 import { useSelector, useDispatch } from 'react-redux';
 
+import { toast } from 'react-toastify';
 import { fetchCrusts, clear } from '../../store/crust';
 import { setCrust } from '../../store/pizza';
 
@@ -14,6 +15,8 @@ function SelectCrust({ next, previous }) {
   const crusts = useSelector((state) => state.crust.data);
   const error = useSelector((state) => state.crust.error);
 
+  const selectedCrust = useSelector((state) => state.pizza.crust);
+
   useEffect(() => {
     dispatch(fetchCrusts());
 
@@ -23,6 +26,14 @@ function SelectCrust({ next, previous }) {
   const handleSelectCrust = useCallback((item) => dispatch(setCrust(item)), [
     dispatch,
   ]);
+
+  const handleGoToNextStep = useCallback(() => {
+    if (!selectedCrust) {
+      toast.warning('Você deve selecionar a borda primeiro');
+    } else {
+      next();
+    }
+  }, [selectedCrust, next]);
 
   if (isLoading) return <p>Carregando...</p>;
 
@@ -50,7 +61,7 @@ function SelectCrust({ next, previous }) {
           Voltar
         </Button>
 
-        <Button onClick={next} size='sm'>
+        <Button onClick={handleGoToNextStep} size='sm'>
           Próximo
         </Button>
       </footer>

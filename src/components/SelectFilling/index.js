@@ -4,6 +4,7 @@ import { Button, Form } from 'react-bootstrap';
 
 import { useSelector, useDispatch } from 'react-redux';
 
+import { toast } from 'react-toastify';
 import { fetchFillings, clear } from '../../store/filling';
 import { setFilling } from '../../store/pizza';
 
@@ -13,6 +14,8 @@ function SelectFilling({ next, previous }) {
   const isLoading = useSelector((state) => state.filling.loading);
   const fillings = useSelector((state) => state.filling.data);
   const error = useSelector((state) => state.filling.error);
+
+  const selectedFilling = useSelector((state) => state.pizza.filling);
 
   useEffect(() => {
     dispatch(fetchFillings());
@@ -24,6 +27,14 @@ function SelectFilling({ next, previous }) {
     (item) => dispatch(setFilling(item)),
     [dispatch]
   );
+
+  const handleGoToNextStep = useCallback(() => {
+    if (!selectedFilling) {
+      toast.warning('Você deve selecionar o recheio da pizza primeiro');
+    } else {
+      next();
+    }
+  }, [selectedFilling, next]);
 
   if (isLoading) return <p>Carregando...</p>;
 
@@ -65,7 +76,7 @@ function SelectFilling({ next, previous }) {
           Voltar
         </Button>
 
-        <Button onClick={next} size='sm'>
+        <Button onClick={handleGoToNextStep} size='sm'>
           Próximo
         </Button>
       </footer>
