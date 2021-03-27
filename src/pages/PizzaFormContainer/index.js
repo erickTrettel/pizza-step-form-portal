@@ -5,6 +5,7 @@ import Stepper from '../../components/Stepper';
 
 import Start from '../../components/Start';
 import SelectDough from '../../components/SelectDough';
+import SelectCrust from '../../components/SelectCrust';
 import SelectSize from '../../components/SelectSize';
 import SelectFilling from '../../components/SelectFilling';
 import Ketchup from '../../components/Ketchup';
@@ -31,6 +32,7 @@ export default function PizzaFormContainer() {
           steps={[
             { title: 'Início' },
             { title: 'Massa' },
+            { title: 'Borda' },
             { title: 'Tamanho' },
             { title: 'Recheio' },
             { title: 'Ketchup' },
@@ -42,9 +44,10 @@ export default function PizzaFormContainer() {
       <article className='pizza-form-container'>
         {currentStep === 0 && <Start next={next} />}
         {currentStep === 1 && <SelectDough next={next} previous={previous} />}
-        {currentStep === 2 && <SelectSize next={next} previous={previous} />}
-        {currentStep === 3 && <SelectFilling next={next} previous={previous} />}
-        {currentStep === 4 && <Ketchup previous={previous} />}
+        {currentStep === 2 && <SelectCrust next={next} previous={previous} />}
+        {currentStep === 3 && <SelectSize next={next} previous={previous} />}
+        {currentStep === 4 && <SelectFilling next={next} previous={previous} />}
+        {currentStep === 5 && <Ketchup previous={previous} />}
       </article>
     </section>
   );

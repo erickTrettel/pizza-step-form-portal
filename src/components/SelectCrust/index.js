@@ -4,36 +4,35 @@ import { Button, Form } from 'react-bootstrap';
 
 import { useSelector, useDispatch } from 'react-redux';
 
-import { fetchSizes, clear } from '../../store/size';
+import { fetchCrusts, clear } from '../../store/crust';
 
-function SelectSize({ next, previous }) {
+function SelectCrust({ next, previous }) {
   const dispatch = useDispatch();
 
-  const isLoading = useSelector((state) => state.size.loading);
-  const sizes = useSelector((state) => state.size.data);
-  const error = useSelector((state) => state.size.error);
+  const isLoading = useSelector((state) => state.crust.loading);
+  const crusts = useSelector((state) => state.crust.data);
+  const error = useSelector((state) => state.crust.error);
 
   useEffect(() => {
-    dispatch(fetchSizes());
+    dispatch(fetchCrusts());
 
     return () => dispatch(clear());
   }, [dispatch]);
 
   if (isLoading) return <p>Carregando...</p>;
 
-  if (error)
-    return <p>Tivemos um problema ao carregar os tamanhos disponíveis</p>;
+  if (error) return <p>Tivemos um problema ao carregar nossas bordas</p>;
 
   return (
     <article>
-      <p>Qual o tamanho da sua fome?</p>
+      <p>Que tipo de borda você curte?</p>
 
-      {sizes.map((item) => (
+      {crusts.map((item) => (
         <Form.Check
           key={item}
           type='radio'
-          label={`${item.description} (${item.slices} fatias)`}
-          name='size'
+          label={item.description}
+          name='crust'
           id={item.description}
         />
       ))}
@@ -46,9 +45,9 @@ function SelectSize({ next, previous }) {
   );
 }
 
-SelectSize.propTypes = {
+SelectCrust.propTypes = {
   next: PropTypes.func.isRequired,
   previous: PropTypes.func.isRequired,
 };
 
-export default SelectSize;
+export default SelectCrust;

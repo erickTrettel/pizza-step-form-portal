@@ -5,9 +5,19 @@ import multi from 'redux-multi';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import stepper from './stepper';
+import dough from './dough';
+import crust from './crust';
+import daySuggestion from './daySuggestion';
+import filling from './filling';
+import size from './size';
 
 const reducers = combineReducers({
   stepper,
+  dough,
+  crust,
+  filling,
+  size,
+  daySuggestion,
 });
 
 const store = createStore(
