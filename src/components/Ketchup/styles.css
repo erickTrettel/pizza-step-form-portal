@@ -1,0 +1,8 @@
+span.line-through {
+  text-decoration: line-through;
+}
+
+footer.ketchup-footer {
+  display: flex;
+  justify-content: space-between;
+}
