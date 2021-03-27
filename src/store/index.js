@@ -10,6 +10,7 @@ import crust from './crust';
 import daySuggestion from './daySuggestion';
 import filling from './filling';
 import size from './size';
+import pizza from './pizza';
 
 const reducers = combineReducers({
   stepper,
@@ -18,6 +19,7 @@ const reducers = combineReducers({
   filling,
   size,
   daySuggestion,
+  pizza,
 });
 
 const store = createStore(

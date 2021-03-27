@@ -9,6 +9,7 @@ import SelectCrust from '../../components/SelectCrust';
 import SelectSize from '../../components/SelectSize';
 import SelectFilling from '../../components/SelectFilling';
 import Ketchup from '../../components/Ketchup';
+import Confirmation from '../../components/Confirmation';
 
 import {
   next as nextStep,
@@ -36,6 +37,7 @@ export default function PizzaFormContainer() {
             { title: 'Tamanho' },
             { title: 'Recheio' },
             { title: 'Ketchup' },
+            { title: 'Confirmação' },
           ]}
           currentStep={currentStep}
         />
@@ -48,6 +50,7 @@ export default function PizzaFormContainer() {
         {currentStep === 3 && <SelectSize next={next} previous={previous} />}
         {currentStep === 4 && <SelectFilling next={next} previous={previous} />}
         {currentStep === 5 && <Ketchup previous={previous} />}
+        {currentStep === 6 && <Confirmation />}
       </article>
     </section>
   );
