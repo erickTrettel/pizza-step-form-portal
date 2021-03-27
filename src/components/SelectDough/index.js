@@ -57,7 +57,7 @@ function SelectDough({ next, previous }) {
       <hr className='mt-5' />
 
       <footer className='ketchup-footer'>
-        <Button onClick={previous} size='sm'>
+        <Button variant='secondary' onClick={previous} size='sm'>
           Voltar
         </Button>
 

@@ -45,7 +45,7 @@ function SelectCrust({ next, previous }) {
 
       {crusts.map((item) => (
         <Form.Check
-          key={item}
+          key={item.description}
           type='radio'
           label={item.description}
           name='crust'
@@ -57,7 +57,7 @@ function SelectCrust({ next, previous }) {
       <hr className='mt-5' />
 
       <footer className='ketchup-footer'>
-        <Button onClick={previous} size='sm'>
+        <Button variant='secondary' onClick={previous} size='sm'>
           Voltar
         </Button>
 
