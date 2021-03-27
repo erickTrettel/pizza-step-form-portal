@@ -1,0 +1,37 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["plugin:react/recommended", "airbnb", "prettier"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "react-hooks", "prettier"],
+  "rules": {
+    "import/no-named-as-default": "off",
+    "react/react-in-jsx-scope": "off",
+    "no-console": "error",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "jsx-a11y/label-has-associated-control": ["error", { "assert": "either" }],
+    "class-methods-use-this": "off",
+    "object-shorthand": "off",
+    "func-names": "off",
+    "prettier/prettier": "error",
+    "linebreak-style": ["error", "windows"],
+    "react/forbid-prop-types": [0],
+    "react/jsx-filename-extension": [
+      "error",
+      {
+        "extensions": [".js", ".jsx"]
+      }
+    ],
+    "no-unused-vars": "warn",
+    "react/jsx-props-no-spreading": "off"
+  }
+}
