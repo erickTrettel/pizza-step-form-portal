@@ -28,7 +28,7 @@ export default function PizzaFormContainer() {
 
   return (
     <section>
-      <header className='mb-5'>
+      <header className='pizza-form-header mb-5'>
         <Stepper
           steps={[
             { title: 'Início' },
@@ -49,7 +49,7 @@ export default function PizzaFormContainer() {
         {currentStep === 2 && <SelectCrust next={next} previous={previous} />}
         {currentStep === 3 && <SelectSize next={next} previous={previous} />}
         {currentStep === 4 && <SelectFilling next={next} previous={previous} />}
-        {currentStep === 5 && <Ketchup previous={previous} />}
+        {currentStep === 5 && <Ketchup next={next} previous={previous} />}
         {currentStep === 6 && <Confirmation />}
       </article>
     </section>

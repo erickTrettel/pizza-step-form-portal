@@ -3,7 +3,7 @@ import { Button, Form } from 'react-bootstrap';
 
 import './styles.css';
 
-function Ketchup({ previous }) {
+function Ketchup({ next, previous }) {
   return (
     <div>
       <header>
@@ -35,7 +35,7 @@ function Ketchup({ previous }) {
           Voltar
         </Button>
 
-        <Button onClick={null} size='sm'>
+        <Button onClick={next} size='sm'>
           Finalizar
         </Button>
       </footer>
@@ -44,6 +44,7 @@ function Ketchup({ previous }) {
 }
 
 Ketchup.propTypes = {
+  next: PropTypes.func.isRequired,
   previous: PropTypes.func.isRequired,
 };
 

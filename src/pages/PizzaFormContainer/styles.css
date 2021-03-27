@@ -1,3 +1,10 @@
+header.pizza-form-header {
+  width: 100%;
+  max-width: 800px;
+
+  margin: 0 auto;
+}
+
 article.pizza-form-container {
   width: 100%;
   max-width: 1080px;

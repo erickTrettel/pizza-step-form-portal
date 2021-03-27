@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
 
@@ -19,15 +19,17 @@ function Start({ next }) {
   const daySuggestion = useSelector((state) => state.daySuggestion.data);
   const error = useSelector((state) => state.daySuggestion.error);
 
+  const dayOfTheWeek = useMemo(() => new Date().getDay() + 1, []);
+
   useEffect(() => {
-    dispatch(fetchDaySuggestion(new Date().getDay() + 1));
+    dispatch(fetchDaySuggestion(dayOfTheWeek));
 
     return () => dispatch(clear());
-  }, [dispatch]);
+  }, [dispatch, dayOfTheWeek]);
 
   const handleSelectDaySuggestion = useCallback(
-    () => dispatch(selectDaySuggestion(new Date().getDay() + 1)),
-    [dispatch]
+    () => dispatch(selectDaySuggestion(dayOfTheWeek)),
+    [dispatch, dayOfTheWeek]
   );
 
   if (isLoading) return <p>Carregando...</p>;

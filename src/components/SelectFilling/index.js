@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Form } from 'react-bootstrap';
 
 import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchFillings, clear } from '../../store/filling';
+import { setFilling } from '../../store/pizza';
 
 function SelectFilling({ next, previous }) {
   const dispatch = useDispatch();
@@ -19,6 +20,11 @@ function SelectFilling({ next, previous }) {
     return () => dispatch(clear());
   }, [dispatch]);
 
+  const handleSelectFilling = useCallback(
+    (item) => dispatch(setFilling(item)),
+    [dispatch]
+  );
+
   if (isLoading) return <p>Carregando...</p>;
 
   if (error)
@@ -29,8 +35,12 @@ function SelectFilling({ next, previous }) {
       <p>Hmm, agora o principal:</p>
 
       {fillings.map((item) => (
-        <Form.Check key={item} type='radio' id={item.description}>
-          <Form.Check.Input type='radio' name='filling' />
+        <Form.Check key={item.description} type='radio' id={item.description}>
+          <Form.Check.Input
+            type='radio'
+            name='filling'
+            onChange={(e) => e.target.checked && handleSelectFilling(item)}
+          />
 
           <Form.Check.Label>{item.description}</Form.Check.Label>
 
@@ -39,7 +49,7 @@ function SelectFilling({ next, previous }) {
           <small>
             Ingredientes:{' '}
             {item.ingredients.map((ingredient, index) => (
-              <span>
+              <span key={ingredient.description}>
                 {ingredient.description}
                 {index + 1 < item.ingredients.length && ', '}
               </span>
@@ -48,9 +58,16 @@ function SelectFilling({ next, previous }) {
         </Form.Check>
       ))}
 
-      <footer>
-        <Button onClick={previous}>Voltar</Button>
-        <Button onClick={next}>Próximo</Button>
+      <hr className='mt-5' />
+
+      <footer className='ketchup-footer'>
+        <Button onClick={previous} size='sm'>
+          Voltar
+        </Button>
+
+        <Button onClick={next} size='sm'>
+          Próximo
+        </Button>
       </footer>
     </article>
   );

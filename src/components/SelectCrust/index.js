@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Form } from 'react-bootstrap';
 
 import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchCrusts, clear } from '../../store/crust';
+import { setCrust } from '../../store/pizza';
 
 function SelectCrust({ next, previous }) {
   const dispatch = useDispatch();
@@ -18,6 +19,10 @@ function SelectCrust({ next, previous }) {
 
     return () => dispatch(clear());
   }, [dispatch]);
+
+  const handleSelectCrust = useCallback((item) => dispatch(setCrust(item)), [
+    dispatch,
+  ]);
 
   if (isLoading) return <p>Carregando...</p>;
 
@@ -34,12 +39,20 @@ function SelectCrust({ next, previous }) {
           label={item.description}
           name='crust'
           id={item.description}
+          onChange={(e) => e.target.checked && handleSelectCrust(item)}
         />
       ))}
 
-      <footer>
-        <Button onClick={previous}>Voltar</Button>
-        <Button onClick={next}>Próximo</Button>
+      <hr className='mt-5' />
+
+      <footer className='ketchup-footer'>
+        <Button onClick={previous} size='sm'>
+          Voltar
+        </Button>
+
+        <Button onClick={next} size='sm'>
+          Próximo
+        </Button>
       </footer>
     </article>
   );

@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Form } from 'react-bootstrap';
 
 import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchSizes, clear } from '../../store/size';
+import { setSize } from '../../store/pizza';
 
 function SelectSize({ next, previous }) {
   const dispatch = useDispatch();
@@ -19,6 +20,10 @@ function SelectSize({ next, previous }) {
     return () => dispatch(clear());
   }, [dispatch]);
 
+  const handleSelectSize = useCallback((item) => dispatch(setSize(item)), [
+    dispatch,
+  ]);
+
   if (isLoading) return <p>Carregando...</p>;
 
   if (error)
@@ -30,17 +35,25 @@ function SelectSize({ next, previous }) {
 
       {sizes.map((item) => (
         <Form.Check
-          key={item}
+          key={item.description}
           type='radio'
           label={`${item.description} (${item.slices} fatias)`}
           name='size'
           id={item.description}
+          onChange={(e) => e.target.checked && handleSelectSize(item)}
         />
       ))}
 
-      <footer>
-        <Button onClick={previous}>Voltar</Button>
-        <Button onClick={next}>Próximo</Button>
+      <hr className='mt-5' />
+
+      <footer className='ketchup-footer'>
+        <Button onClick={previous} size='sm'>
+          Voltar
+        </Button>
+
+        <Button onClick={next} size='sm'>
+          Próximo
+        </Button>
       </footer>
     </article>
   );
