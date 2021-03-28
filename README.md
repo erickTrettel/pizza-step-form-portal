@@ -8,6 +8,10 @@ O projeto recebe dados da montagem da pizza de uma [API](https://github.com/eric
 usuário selecione com base nestes ingredientes.
 Caso não queira montar sua pizza, não há problema, você pode optar pela sugestão do dia e o app monta a pizza pra você.
 
+## Produção
+
+Você pode acessar esse projeto [nesse link](https://pizza-step-form.firebaseapp.com/)
+
 ## Como rodar?
 
 Para executar o projeto você pode fazer o clone deste repositório e executar o comando `yarn start`. Certifique-se de
